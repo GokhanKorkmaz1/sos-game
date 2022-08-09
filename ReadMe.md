@@ -1,10 +1,13 @@
 # Ödev SOS Oyunu
 
-|   | 1 | 2 | 3 |
-|---|---|---|---|
-| 1 | s | s | s |
-| 2 | s | o | s |
-| 3 | o | o | s |
+|   | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| 1 | s | s | s | o | s |
+| 2 | s | o | s | s | o |
+| 3 | o | o | s | o | s |
+| 4 | s | o | s | s | o |
+| 5 | o | o | s | o | s |
+
 
 Kare şeklinde nxn kutulardan oluşan bir panelde iki kişi tarafından oynanan bir oyundur. Oyun sırasında
 her bir kutuya **s** yada **o** harflerinden biri yerleştirilir. Oyunun başında kimin başlayacağına random olarak
