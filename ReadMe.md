@@ -13,7 +13,7 @@ kelimesini oluşturmaktır. SOS kelimesini oluşturan oyuncu 1 puan alır ve tek
 Panel üzerinde hiç boş kutu kalmayana kadar oyun oynanır, sonunda en çok puanı alan oyunu kazanır.
 
 ## Kurallar
-1. Panel büyüklüğü oyunun en başında konsoldan girdi olarak alınır. Minimum 3x3 maksimum 7x7 büyüklüğünde olmalıdır.
+1. Panel büyüklüğü oyunun en başında konsoldan girdi olarak alınır. Minimum 5x5 maksimum 10x10 büyüklüğünde olmalıdır.
 2. Oyun bir kullanıcı tarafından bilgisayara karşı oynanır.
 3. Kimin başlayacağına random karar verilir.
 4. Oyuncu hangi kutuya harfini girmek istediğini satır, sütun numarasını ve harfi konsoldan girerek belli eder.
