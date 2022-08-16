@@ -6,7 +6,6 @@ import java.util.InputMismatchException;
 public class Board {
 	private int size;
 	ArrayList<Character> board;
-	//char [][]board;
 	int score, action;
 	
 	// Setter and Getters
@@ -42,12 +41,11 @@ public class Board {
 		this.score = score;
 		action=0;
 		board = new ArrayList<>();
-		//board = new char[getSize()][getSize()];
-		fillList();
+		initArrayList();
 		drawBoard();
 	}
 	
-	public void fillList() {
+	public void initArrayList() {
 		for(int i=0; i<size; i++) {
 			for(int j=0; j<size; j++) {
 				board.add((char)0);
@@ -115,35 +113,26 @@ public class Board {
 		int turnScore=0;
 		for (int i = 0; i < size-2; i++) {
 			for (int j = 0; j < size-2; j++) {
-				if(board.get(i*size+j)==83 && i<size-2) {
-					if(board.get((i+1)*size+j) == 79 && board.get((i+2)*size+j) == 83) {
+				
+				if(board.get(i*size+j)==83) {
+					
+					if( board.get((i+1)*size+j) == 79 && board.get((i+2)*size+j) == 83) 
 						turnScore++;
-					}
-				}
-				if(board.get(i*size+j)==83 && j<size-2) {
-					if(board.get(i*size+j+1) == 79 && board.get(i*size+j+2) == 83) {
+					
+					if( board.get(i*size+j+1) == 79 && board.get(i*size+j+2) == 83)
 						turnScore++;
-					}
-				}
-				if(board.get(i*size+j)==83 && i<size-2 && j<size-2) {
-					if(board.get((i+1)*size+j+1) == 79 && board.get((i+1)*size+j+2) == 83) {
+					
+					if( board.get((i+1)*size+j+1) == 79 && board.get((i+2)*size+j+2) == 83) 
 						turnScore++;
-					}
-				}
-				if(board.get(i*size+j)==83 && i>1 && j>1 && i<size-2 && j<size-2) {
-					if(board.get((i-1)*size+j+1) == 79 && board.get((i-2)*size+j+2) == 83) {
-						turnScore++;
-					}
-				}
-				if(board.get(i*size+j)==83 && i>=size-2) {
-					if(board.get(i*size+j+1) == 79 && board.get(i*size+j+2) == 83) {
-						turnScore++;
-					}
-				}
-				if(board.get(i*size+j)==83 && j>=size-2) {
-					if(board.get((i+1)*size+j) == 79 && board.get((i+2)*size+j) == 83) {
-						turnScore++;
-					}
+						
+					if(i>1)
+						if( board.get((i-1)*size+j+1) == 79 && board.get((i-2)*size+j+2) == 83)
+							turnScore++;
+					
+					if(j>1)
+						if( board.get((i+1)*size+j-1) == 79 && board.get((i+2)*size+j-2) == 83)
+							turnScore++;
+
 				}
 			}
 		}
