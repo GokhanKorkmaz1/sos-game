@@ -1,10 +1,12 @@
 package org.kodluyoruz;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 public class Board {
 	private int size;
-	char [][]board;
+	ArrayList<Character> board;
+	//char [][]board;
 	int score, action;
 	
 	// Setter and Getters
@@ -26,12 +28,12 @@ public class Board {
 			this.size = size;
 		}
 	}
-
-	public char[][] getBoard() {
+	
+	public ArrayList<Character> getBoard() {
 		return board;
 	}
 
-	public void setBoard(char[][] board) {
+	public void setBoard(ArrayList<Character> board) {
 		this.board = board;
 	}
 
@@ -39,19 +41,29 @@ public class Board {
 		setSize(size);
 		this.score = score;
 		action=0;
-		board = new char[getSize()][getSize()];
+		board = new ArrayList<>();
+		//board = new char[getSize()][getSize()];
+		fillList();
 		drawBoard();
+	}
+	
+	public void fillList() {
+		for(int i=0; i<size; i++) {
+			for(int j=0; j<size; j++) {
+				board.add((char)0);
+			}
+		}
 	}
 	
 	public void drawBoard() {
 		drawNumbersVertical();
 		
-		for (int j = 0; j < board.length; j++) {
+		for (int j = 0; j < size; j++) {
 			System.out.print(" " + (j+1) + " ");
-			for (int i = 0; i < board[j].length; i++) {
-				if(board[i][j] == 83)
+			for (int i = 0; i < size; i++) {
+				if(board.get(j*size+i) == 83)
 					System.out.print(" S ");
-				else if(board[i][j] == 79)
+				else if(board.get(j*size+i) == 79)
 					System.out.print(" O ");
 				else
 					System.out.print("   ");
@@ -88,12 +100,12 @@ public class Board {
 			return false;
 		}
 		
-		if(board[x-1][y-1] == 83  || board[x-1][y-1] == 79) {
+		if(board.get((y-1)*size+x-1) == 83  || board.get((y-1)*size+x-1) == 79) {
 			System.out.println("It's already full");
 			return false;
 		}
 		
-		board[x-1][y-1] = (char) (ch >=111 ? ch-32: ch);
+		board.set((y-1)*size+x-1,(char) (ch >=111 ? ch-32: ch));
 		action++;
 		drawBoard();
 		return true;
@@ -101,35 +113,35 @@ public class Board {
 	
 	public int calculateScore() {
 		int turnScore=0;
-		for (int i = 0; i < board.length-2; i++) {
-			for (int j = 0; j < board[i].length-2; j++) {
-				if(board[i][j]==83 && i<board.length-2) {
-					if(board[i+1][j] == 79 && board[i+2][j] == 83) {
+		for (int i = 0; i < size-2; i++) {
+			for (int j = 0; j < size-2; j++) {
+				if(board.get(i*size+j)==83 && i<size-2) {
+					if(board.get((i+1)*size+j) == 79 && board.get((i+2)*size+j) == 83) {
 						turnScore++;
 					}
 				}
-				if(board[i][j]==83 && j<board.length-2) {
-					if(board[i][j+1] == 79 && board[i][j+2] == 83) {
+				if(board.get(i*size+j)==83 && j<size-2) {
+					if(board.get(i*size+j+1) == 79 && board.get(i*size+j+2) == 83) {
 						turnScore++;
 					}
 				}
-				if(board[i][j]==83 && i<board.length-2 && j<board.length-2) {
-					if(board[i+1][j+1] == 79 && board[i+2][j+2] == 83) {
+				if(board.get(i*size+j)==83 && i<size-2 && j<size-2) {
+					if(board.get((i+1)*size+j+1) == 79 && board.get((i+1)*size+j+2) == 83) {
 						turnScore++;
 					}
 				}
-				if(board[i][j]==83 && i>1 && j>1 && i<board.length-2 && j<board.length-2) {
-					if(board[i-1][j+1] == 79 && board[i-2][j+2] == 83) {
+				if(board.get(i*size+j)==83 && i>1 && j>1 && i<size-2 && j<size-2) {
+					if(board.get((i-1)*size+j+1) == 79 && board.get((i-2)*size+j+2) == 83) {
 						turnScore++;
 					}
 				}
-				if(board[i][j]==83 && i>=board.length-2) {
-					if(board[i][j+1] == 79 && board[i][j+2] == 83) {
+				if(board.get(i*size+j)==83 && i>=size-2) {
+					if(board.get(i*size+j+1) == 79 && board.get(i*size+j+2) == 83) {
 						turnScore++;
 					}
 				}
-				if(board[i][j]==83 && j>=board.length-2) {
-					if(board[i+1][j] == 79 && board[i+2][j] == 83) {
+				if(board.get(i*size+j)==83 && j>=size-2) {
+					if(board.get((i+1)*size+j) == 79 && board.get((i+2)*size+j) == 83) {
 						turnScore++;
 					}
 				}

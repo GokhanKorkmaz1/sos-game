@@ -60,8 +60,9 @@ public class Game {
 	public void gameLoop() {
 		int x, y, turnScore;
 		char ch;
+		boolean game=true;
 		
-		while(true) {
+		while(game) {
 			
 			Player p = playbyTurn(turn);
 			
@@ -79,7 +80,7 @@ public class Game {
 				// If the player does not score, the turn passes to the opposing player.
 				turn=checkTurnByScore(turnScore, turn);
 			}
-			gameOverCheck();
+			game=gameOverCheck();
 		}
 	}
 	
@@ -121,10 +122,11 @@ public class Game {
 		System.out.println(result);
 	}
 	
-	public void gameOverCheck() {
+	public boolean gameOverCheck() {
 		if(board.action == Math.pow(board.getSize(),2) ) {
 			drawResult();
-			return;
+			return false;
 		}
+		return true;
 	}
 }
